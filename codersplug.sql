@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-04-2020 a las 11:17:39
+-- Tiempo de generación: 13-04-2020 a las 00:51:32
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -102,14 +102,6 @@ CREATE TABLE `perfil` (
   `direccion` varchar(150) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `perfil`
---
-
-INSERT INTO `perfil` (`id`, `sexo`, `telefono`, `descripcion`, `trabajos_anteriores`, `trabajos_actuales`, `foto`, `fecha_nacimiento`, `cuil_cuit`, `dni`, `rubro`, `usuario_id`, `region`, `nick`, `direccion`) VALUES
-(3, 'M', '', '', '', '', 'assets/img/asd@asd.com/profile.jpg', '0000-00-00', '', '', '', 20, '', 'asd@asd.com', ''),
-(5, 'M', '', '', '', '', 'assets/img/profile/default.jpg', '0000-00-00', '', '', '', 22, '', 'pepegrillo@coder.com', '');
-
 -- --------------------------------------------------------
 
 --
@@ -124,13 +116,6 @@ CREATE TABLE `post` (
   `post_id` int(11) DEFAULT NULL,
   `titulo` varchar(150) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `post`
---
-
-INSERT INTO `post` (`id`, `texto`, `fecha`, `usuario_id`, `post_id`, `titulo`) VALUES
-(1, 'Fruta mucha fruta.', '2020-04-12 00:00:00', 20, NULL, 'Frutanga');
 
 -- --------------------------------------------------------
 
@@ -202,14 +187,6 @@ CREATE TABLE `usuario` (
   `respuesta_pregunta_secreta` varchar(255) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `usuario`
---
-
-INSERT INTO `usuario` (`id`, `email`, `password`, `nombre`, `apellido`, `pregunta_secreta`, `respuesta_pregunta_secreta`) VALUES
-(20, 'asd@asd.com', 'asdasd', 'asdasd', 'asdasd', '1ra Mascota de la infancia', 'Diana'),
-(22, 'pepegrillo@coder.com', 'pepegrillo', 'Pepe', 'Grillo', '1ra Mascota de la infancia', 'CaputDraconis');
-
 -- --------------------------------------------------------
 
 --
@@ -233,14 +210,6 @@ CREATE TABLE `usuario_rol` (
   `usuario_id` int(11) NOT NULL,
   `rol_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `usuario_rol`
---
-
-INSERT INTO `usuario_rol` (`id`, `usuario_id`, `rol_id`) VALUES
-(3, 20, 1),
-(5, 22, 1);
 
 --
 -- Índices para tablas volcadas
