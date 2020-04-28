@@ -18,5 +18,30 @@
 			PostRepository::agregarComentarioPost($comment);
 			View::redirect("/verDetallesPost/".$_POST['idpost']);
 		}
+		public static function showDeleteConfirm($id){
+			$parametros=[];
+			$parametros['usuario']=SessionController::getLoggedUser();
+			$parametros['post']=PostRepository::recuperarPost($id);
+			View::render("confirmDeletePost.php.cp",$parametros);
+		}
+		public static function editForm($id){
+			$parametros=[];
+			$parametros['usuario']=SessionController::getLoggedUser();
+			$parametros['post']=PostRepository::recuperarPost($id);
+			View::render("editPost.php.cp",$parametros);
+		}
+		public static function delete(){
+			PostRepository::eliminarComentariosPost($_POST['id']);
+			PostRepository::eliminarPost($_POST['id']);
+			View::redirect("/board");
+		}
+		public static function edit(){
+			$post['id'] = $_POST['id'];
+			$post['texto'] = $_POST['texto'];
+			$post['fecha'] = date("Y-m-d H:i:s");
+			$post['titulo'] = $_POST['titulo'];
+			PostRepository::modificarPost($post);
+			View::redirect("/verDetallesPost/".$post['id']);
+		}
 	}
 ?>

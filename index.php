@@ -38,6 +38,20 @@
 							View::redirect("/index");
 						}		
 						break;
+					case '/editPostForm':
+						if (SessionController::verifySession())
+							PostController::editForm($param);
+						else {
+							View::redirect("/index");
+						}
+						break;
+					case '/deletePostForm':
+						if (SessionController::verifySession())
+							PostController::showDeleteConfirm($param);
+						else {
+							View::redirect("/index");
+						}
+						break;
 					case '/logout':
 						SessionController::logout();	
 						break;
@@ -64,6 +78,20 @@
 					case '/agregarComentario':
 						if (SessionController::verifySession())
 							PostController::addComment();
+						else {
+							View::redirect("/index");
+						}		
+						break;
+					case '/editPost':
+						if (SessionController::verifySession())
+							PostController::edit();
+						else {
+							View::redirect("/index");
+						}		
+						break;
+					case '/deletePost':
+						if (SessionController::verifySession())
+							PostController::delete();
 						else {
 							View::redirect("/index");
 						}		

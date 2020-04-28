@@ -42,7 +42,7 @@
 			<div class="col-lg-5 col-md-7 col-sm-12" >
 				<!--/////////////////////////////////PERFIL EN CHICO//////////////////////////////////-->
 				<div class="text-center d-none d-sm-none d-md-block  ">
-					<h2 class="blanco "><span class="verde">D</span>etails</h2>
+					<h2 class="blanco "><span class="verde">D</span>elete</h2>
 				</div>
 				<div class="text-center d-block d-sm-block d-md-none align-self-center profilesmall ">
 					<div class="row">
@@ -75,66 +75,24 @@
 
 				<div class="fixed">
 
-					<div class="post">
-					<?php if ($args["post"]["usuario_id"] == $args["usuario"]["id"]): ?>
-						<br>
-						<div class="row">
-							<div class="col-2">
-								<a href="/editPostForm/<?= $args['post']['idpost'] ?>"><h4>Editar</h4></a>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-2">
-								<a href="/deletePostForm/<?= $args['post']['idpost'] ?>"><h4>Eliminar</h4></a>
-							</div>
-						</div>
-					<?php endif ?>
-						<div class="row">
-							<div class="col-2">
-								<img src="<?= $args['post']['foto'] ?>">
-							</div>
-							<div class="col-10 name" >
-								<h3 style="color:#ebe770;"><?= $args['post']["nick"] ?></h3>
-								<!-- <p class="blanco">hace </p> -->
-							</div>
-						</div> <!--ROW-->
-						<div class="comentario">
-							<h5 class="blanco"><?= $args['post']["titulo"] ?></h5>
-							<p><?= $args['post']["texto"] ?></p>
-						</div>
-						<div class="form-group">
-							<?php foreach ($args["comentarios"] as $key ) : ?>
+					<div class="row post">
+						<div class="col-12">
 							<div class="form-group">
-								<div class="post">
-									<div class="row">
-										<div class="col-2">
-											<img src="<?= $key['foto'] ?>">
-										</div>
-										<div class="col-10 name" >
-											<h3 style="color:#ebe770;"><?= $key["nick"] ?></h3>
-											<!-- <p class="blanco">hace </p> -->
-										</div>
-									</div> <!--ROW-->
-									<div class="comentario">
-										<p><?= $key["texto"] ?></p>
-									</div>
-								</div>
+								<br>
+								<?php if ($args["post"]["usuario_id"] == $args["usuario"]["id"]): ?>
+								<h5>¿Esta seguro que desea eliminar el post <?= $args['post']['titulo'] ?>?</h5>
+								<form action="/deletePost" method="POST">
+									<input type="hidden" name="id" value="<?= $args['post']['idpost'] ?>">
+									<input type="submit" class="btn btn-warning" value="ELIMINAR">
+								</form>
+								<a href="/verDetallesPost/<?= $args['post']['idpost'] ?>"><h4>Volver</h4></a>
+								<?php else: ?>
+									<h5>Usted no puede ver esto.</h5>
+								<?php endif ?>
 							</div>
-							<?php endforeach ?>
-							<form action="/agregarComentario" method="post">
-								<input type="hidden" name="idpost" value="<?= $args['post']['idpost'] ?>">
-								<div class="form-group">
-									<textarea name="comentario" class="form-control comentarios" placeholder="Escribi tu comentario"></textarea>
-								</div>
-								<input type="submit" class="btn btn-warning" value="Comentar">
-							</form>
-						</div>
+						</div> 
 					</div>
-				</div>
-				<div class="d-block d-sm-block d-md-none">
-					<a href="/board"><img class="menuflotante" src="/assets/img/menu.png"></a>
-				</div>
-
+			</div>
 			</div>
 
 			<div class="colizq col-4 d-none d-lg-block">

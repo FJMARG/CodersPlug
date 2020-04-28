@@ -108,7 +108,7 @@
               <p><?= $key["texto"] ?></p>
             </div>
             <div class="form-group">
-              <a href="/verDetallesPost/<?= $key["idpost"] ?>">Ver detalles</a>
+              <a href="/verDetallesPost/<?= $key["idpost"] ?>"><h4>Ver detalles</h4></a>
             </div>
           </div>
           <?php endforeach ?>

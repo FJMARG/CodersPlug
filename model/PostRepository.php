@@ -39,5 +39,28 @@
 			$query->bindParam(":pid",$c['post_id'],PDO::PARAM_STR);
 			return $query->execute();
 		}
+		public static function eliminarPost($id){
+			$db = PDOMaker::getInstance();
+			$query = $db-> prepare("DELETE FROM post WHERE id = :id");
+			$query->bindParam(":id",$id,PDO::PARAM_INT);
+			return $query->execute();
+		}
+		public static function eliminarComentariosPost($id){
+			$db = PDOMaker::getInstance();
+			$query = $db-> prepare("DELETE FROM post WHERE post_id = :id");
+			$query->bindParam(":id",$id,PDO::PARAM_INT);
+			return $query->execute();
+		}
+		public static function modificarPost($p){
+			$db = PDOMaker::getInstance();
+			$query = $db-> prepare("UPDATE post SET texto = :t, fecha = :f, titulo = :tit WHERE id = :id");
+			$query->bindParam(":t",$p['texto'],PDO::PARAM_STR);
+			$query->bindParam(":f",$p['fecha'],PDO::PARAM_STR);
+			$query->bindParam(":tit",$p['titulo'],PDO::PARAM_STR);
+			$query->bindParam(":id",$p['id'],PDO::PARAM_INT);
+			return $query->execute();
+		}
+
+
 	}
 ?>
