@@ -3,10 +3,15 @@
 	
 	//	Rutas
 	//  render puede recibir 1 o 2 parametros: el template y un array asociativo de datos, que van a ser los datos que se imprimiran en el template, o solo el template.
+	
+	$url_data = explode("/",$_SERVER['REQUEST_URI']);
+	$URI = "/".$url_data[1];
+	if (isset($url_data[2]))
+		$param = $url_data[2];
 
 	switch ($_SERVER['REQUEST_METHOD']) {
 		case 'GET':
-				switch ($_SERVER['REQUEST_URI']) {
+				switch ($URI) {
 					case '/index':
 						View::render("index.php.cp");
 						break;
@@ -26,6 +31,13 @@
 							View::redirect("/index");
 						}		
 						break;
+					case '/verDetallesPost':
+						if (SessionController::verifySession())
+							PostController::show($param);
+						else {
+							View::redirect("/index");
+						}		
+						break;
 					case '/logout':
 						SessionController::logout();	
 						break;
@@ -35,12 +47,26 @@
 				}
 			break;
 		case 'POST':
-				switch ($_SERVER['REQUEST_URI']) {
+				switch ($URI) {
 					case '/register':
 						RegisterController::registrar();
 						break;
 					case '/login':
 						SessionController::login($_POST['email'], $_POST['password']);
+						break;
+					case '/addPost':
+						if (SessionController::verifySession())
+							BoardController::addPost();
+						else {
+							View::redirect("/index");
+						}		
+						break;
+					case '/agregarComentario':
+						if (SessionController::verifySession())
+							PostController::addComment();
+						else {
+							View::redirect("/index");
+						}		
 						break;
 				}
 			break;

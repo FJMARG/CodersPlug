@@ -5,17 +5,11 @@
 </head>
 <body>
 
-
-
-
 <?php if (isset($args["msj"])): ?>
             <div>
               <?= $args["msj"];?>
             </div>
             <?php endif ?>
-
-
-
 
   <div class="container-fluid">
   	<div class="row">
@@ -26,7 +20,7 @@
 
   			<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
   			  <a class="navbar-brand" href="/board">
-    				<img src="assets/img/title.png" width="150" height="auto" alt="">
+    				<img src="/assets/img/title.png" width="150" height="auto" alt="">
   			  </a>
   			  <div class="profile ">
   			  	<img class="profileimg" src="<?=$args['usuario']['foto']?>">
@@ -43,7 +37,7 @@
   			  	</div>
   			  </div>
     			 <div class="col-12">
-           <a href="/board"><img class="menuflotante2" src="assets/img/menu.png"></a>
+           <a href="/board"><img class="menuflotante2" src="/assets/img/menu.png"></a>
           </div>
 			 </div>
 			
@@ -74,8 +68,7 @@
   								<div class="col-6">
   									<button type="button" class="btn btn-light">MP</button>
   								</div>
-  								
-  							
+  								  							
   							</div>
   							
   						</div>	
@@ -88,20 +81,22 @@
               <div class="row post">
                 <div class="col-12">
                   <div class="form-group">
-                   <form action="/addpost" method="POST">
+				  <br>
+				   <form action="/addPost" method="POST">
+					  <label for="titulo"><h4>Titulo:</h4></label>
+				  	  <input type="text" id="titulo" name="titulo" class="form-control comentarios margin2">
                       <textarea class="form-control comentarios margin2" name="post" placeholder="Escribi tu comentario"></textarea>
                       <input type="submit" class="btn btn-warning" value="POSTEAR">
                    </form>
                   </div>
                 </div> 
             </div>
-          
          
          <?php foreach ($args["posts"] as $key ) : ?>
-            <div class="post">
+			<div class="post">
             <div class="row">
               <div class="col-2">
-                  <img  src="<?= $key['foto'] ?>">
+                 <img src="<?= $key['foto'] ?>">
               </div>
               <div class="col-10 name" >
                 <h3 style="color:#ebe770;"><?= $key["nick"] ?></h3>
@@ -113,13 +108,13 @@
               <p><?= $key["texto"] ?></p>
             </div>
             <div class="form-group">
-              <textarea class="form-control comentarios" placeholder="Escribi tu comentario"></textarea>
+              <a href="/verDetallesPost/<?= $key["idpost"] ?>">Ver detalles</a>
             </div>
           </div>
           <?php endforeach ?>
          </div>
          <div class="d-block d-sm-block d-md-none">
-           <a href="/board"><img class="menuflotante" src="assets/img/menu.png"></a>
+           <a href="/board"><img class="menuflotante" src="/assets/img/menu.png"></a>
          </div>
   			
   		</div>

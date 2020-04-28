@@ -35,7 +35,7 @@
     		}
 
     		if(ValidatorController::subioFoto()){
-				$dir = "assets/img/".$user['email']."/";
+				$dir = "/assets/img/".$user['email']."/";
     			mkdir($dir);
     			if (FotoController::subirFoto($user['email'],"profile") != "El archivo se subio correctamente."){
     				$parametros['msj'] = new ClaseMensaje ('danger',"Ocurrio un error en el registro. Usuario creado sin rol.",'Error: ', false);
@@ -49,7 +49,7 @@
     			$user["foto"] = $archivo;
 			}
     		else{
-				$user["foto"] = "assets/img/profile/default.jpg";
+				$user["foto"] = "/assets/img/profile/default.jpg";
     		}
 
     		if(!ProfileRepository::agregarPerfilUsuario($u['id'],$user['sexo'], "", "", "", "", $user["foto"], "", "", "", "", "", $user['email'] , "")){
